@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react";
+import Categories from "./Categories";
 
 
 const Navbar = () => {
@@ -45,6 +46,7 @@ const Navbar = () => {
                     <button className="bg-[#05893E] text-sm font-semibold px-4 py-2 rounded-2xl text-white shadow-md">সাইন আপ</button>
                 </div>
             </div>
+           
         </div>
     )
 }
