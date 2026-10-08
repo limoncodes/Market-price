@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 interface CategoryType {
@@ -75,63 +76,65 @@ const ProductList = ({ data }: { data: CategoryType[] }) => {
                     {/* Product Grid */}
                     <div className="grid grid-cols-3 gap-3">
                         {sortedData.map((item) => (
-                            <div
-                                key={item.id}
-                                className="rounded-xl border border-gray-200 bg-[#FAFCFA] p-3"
-                            >
+                            <Link href={`/productdetilse/${item.id}`} key={item.id}>
+                                <div
+                                    
+                                    className="rounded-xl border border-gray-200 bg-[#FAFCFA] p-3"
+                                >
 
-                                {/* Product Info */}
-                                <div className="flex items-center gap-3">
+                                    {/* Product Info */}
+                                    <div className="flex items-center gap-3">
 
-                                    {/* Icon */}
-                                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#F0F5F0] text-2xl">
-                                        {item.categoryIcon}
+                                        {/* Icon */}
+                                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#F0F5F0] text-2xl">
+                                            {item.categoryIcon}
+                                        </div>
+
+                                        {/* Name */}
+                                        <div>
+                                            <h3 className="text-[16px] font-semibold text-[#1D271F]">
+                                                {item.nameBn}
+                                            </h3>
+
+                                            <p className="text-[12px] text-[#1D271F]">
+                                                প্রতি {item.unit}
+                                            </p>
+                                        </div>
+
                                     </div>
 
-                                    {/* Name */}
-                                    <div>
-                                        <h3 className="text-[16px] font-semibold text-[#1D271F]">
-                                            {item.nameBn}
-                                        </h3>
+                                    {/* Price */}
+                                    <div className="mt-4 flex items-end justify-between">
 
-                                        <p className="text-[12px] text-[#1D271F]">
-                                            প্রতি {item.unit}
-                                        </p>
+                                        <div>
+                                            <p className="text-[12px] text-[#1D271F]">
+                                                আজকের দাম
+                                            </p>
+
+                                            <p className="text-xl font-bold text-[#1D271F]">
+                                                {item.today} টাকা
+                                            </p>
+                                        </div>
+
+                                        {/* Price Change */}
+                                        {item.change.dir === "up" ? (
+                                            <span className="rounded-full bg-[#F1F7F2] px-2 py-1 text-[12px] text-red-500 font-semibold">
+                                                ▲ {item.change.pct}%
+                                            </span>
+                                        ) : item.change.dir === "down" ? (
+                                            <span className="rounded-full bg-[#F1F7F2] px-2 py-1 text-[12px] text-[#1A9951] font-semibold">
+                                                ▼ {item.change.pct}%
+                                            </span>
+                                        ) : (
+                                            <span className="rounded-full bg-[#F1F7F2] px-2 py-1 text-[12px] text-[#1D271F] font-semibold">
+                                                {item.change.pct}%
+                                            </span>
+                                        )}
+
                                     </div>
 
                                 </div>
-
-                                {/* Price */}
-                                <div className="mt-4 flex items-end justify-between">
-
-                                    <div>
-                                        <p className="text-[12px] text-[#1D271F]">
-                                            আজকের দাম
-                                        </p>
-
-                                        <p className="text-xl font-bold text-[#1D271F]">
-                                            {item.today} টাকা
-                                        </p>
-                                    </div>
-
-                                    {/* Price Change */}
-                                    {item.change.dir === "up" ? (
-                                        <span className="rounded-full bg-[#F1F7F2] px-2 py-1 text-[12px] text-red-500 font-semibold">
-                                            ▲ {item.change.pct}%
-                                        </span>
-                                    ) : item.change.dir === "down" ? (
-                                        <span className="rounded-full bg-[#F1F7F2] px-2 py-1 text-[12px] text-[#1A9951] font-semibold">
-                                            ▼ {item.change.pct}%
-                                        </span>
-                                    ) : (
-                                        <span className="rounded-full bg-[#F1F7F2] px-2 py-1 text-[12px] text-[#1D271F] font-semibold">
-                                            {item.change.pct}%
-                                        </span>
-                                    )}
-
-                                </div>
-
-                            </div>
+                            </Link>
                         ))}
                     </div>
 

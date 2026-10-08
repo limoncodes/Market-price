@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Marquee from "react-fast-marquee";
 
 interface MarqueeType {
@@ -21,39 +22,41 @@ const SingleCategory = async () => {
         }
     });
     const data = await getdata.json()
-    
+
     return (
         <div className="bg-[#FAFCFA] shadow-md p-2 ">
             <Marquee speed={80}
-               
+
             >
                 {data.map((marquee: MarqueeType) => (
-                    <div
-                        key={marquee.id}
-                        className="flex items-center gap-1.5 px-5 border-r border-[#E5E7EB] whitespace-nowrap"
-                    >
-                        <h3 className="text-sm">
-                            {marquee.categoryIcon}
-                        </h3>
+                    <Link href={`/productdetilse/${marquee.id}`} key={marquee.id}>
+                        <div
+                            
+                            className="flex items-center gap-1.5 px-5 border-r border-[#E5E7EB] whitespace-nowrap"
+                        >
+                            <h3 className="text-sm">
+                                {marquee.categoryIcon}
+                            </h3>
 
-                        <h2 className="text-[15px] text-[#252B27]">
-                            {marquee.nameBn}
-                        </h2>
+                            <h2 className="text-[15px] text-[#252B27]">
+                                {marquee.nameBn}
+                            </h2>
 
-                        <p className="text-[15px] text-[#252B27]">
-                            {marquee.today} টাকা/{marquee.unit}
-                        </p>
+                            <p className="text-[15px] text-[#252B27]">
+                                {marquee.today} টাকা/{marquee.unit}
+                            </p>
 
-                        {marquee.change.dir === "up" ? (
-                            <span className="text-[#D03739] font-semibold text-sm">
-                                ▲ {marquee.change.pct}%
-                            </span>
-                        ) : (
-                            <span className="text-[#1A9951] font-semibold text-sm">
-                                ▼ {marquee.change.pct}%
-                            </span>
-                        )}
-                    </div>
+                            {marquee.change.dir === "up" ? (
+                                <span className="text-[#D03739] font-semibold text-sm">
+                                    ▲ {marquee.change.pct}%
+                                </span>
+                            ) : (
+                                <span className="text-[#1A9951] font-semibold text-sm">
+                                    ▼ {marquee.change.pct}%
+                                </span>
+                            )}
+                        </div>
+                    </Link>
                 ))}
             </Marquee>
 
