@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import SignInandSignUP from "./SignInandSignUP";
 
 
 
@@ -20,10 +21,11 @@ const Navbar = () => {
     }, []);
 
     return (
-        <div className="bg-[#FAFCFA]">
-            <Link href="/">
-                <div className="container mx-auto flex items-center justify-between py-3">
+        <div className="bg-[#FAFCFA] sticky top-0 z-50 ">
 
+            <div className="container mx-auto flex items-center justify-between py-3  ">
+
+                <Link href="/">
                     <div className="flex items-center gap-2">
                         <div>
                             <h2 className="bg-[#05893E] rounded-xl text-lg text-[#A6A09F] p-2">
@@ -41,14 +43,11 @@ const Navbar = () => {
                             </p>
                         </div>
                     </div>
+                </Link>
 
-                    <div className="flex items-center gap-4">
-                        <button className=" text-sm font-semibold text-[#1D271F]  ">সাইন ইন</button>
+                <SignInandSignUP/>
+            </div>
 
-                        <button className="bg-[#05893E] text-sm font-semibold px-4 py-2 rounded-lg text-white shadow-md">সাইন আপ</button>
-                    </div>
-                </div>
-            </Link>
 
         </div>
     )

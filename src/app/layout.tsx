@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Noto_Serif_Bengali } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Categories from "@/components/Categories";
-import SingleCategory from "@/components/SingleCategory";
+
+import Footer from "@/components/Footer";
+import AllNavsection from "@/components/AllNavsection";
+import { ToastContainer } from "react-toastify";
 
 const geistSans = Noto_Serif_Bengali({
 
@@ -24,11 +25,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.className} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[#F0F5F0]">
-        <Navbar />
-        <Categories />
-        <SingleCategory />
+       <AllNavsection/>
+       <ToastContainer/>
 
         <main className="container  mx-auto  ">{children}</main>
+        <Footer />
       </body>
     </html>
   );

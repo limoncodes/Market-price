@@ -21,7 +21,7 @@ const Categories = async () => {
     const data = await getdata.json();
 
     return (
-        <div className="border-t-2 border-b-2 border-[#E1E8E1] bg-[#FAFCFA]">
+        <div className="border-t-2 border-b-2 border-[#E1E8E1] bg-[#FAFCFA]  sticky top-0  ">
             <div className="container mx-auto p-4 flex items-center gap-8">
                 {data.map((category: CategoryType) => (
                     <div key={category.id}>

@@ -90,8 +90,8 @@ const ProductDetails = async ({
 
           <p
             className={`text-xs ${data.change.dir === "up"
-                ? "text-red-500"
-                : "text-green-600"
+              ? "text-red-500"
+              : "text-green-600"
               }`}
           >
             {data.change.dir === "up" ? "▲" : "▼"}{" "}
