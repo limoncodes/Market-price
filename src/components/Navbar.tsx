@@ -1,22 +1,22 @@
 "use client"
 
 import { useEffect, useState } from "react";
-import Categories from "./Categories";
+
 
 
 const Navbar = () => {
 
     const [today, setToday] = useState("");
-    
-      useEffect(() => {
-       
+
+    useEffect(() => {
+
         // eslint-disable-next-line react-hooks/set-state-in-effect
         setToday(
-          new Date().toLocaleDateString("bn-BD", {
-            dateStyle: "full",
-          })
+            new Date().toLocaleDateString("bn-BD", {
+                dateStyle: "full",
+            })
         );
-      }, []);
+    }, []);
 
     return (
         <div className="bg-[#FAFCFA]">
@@ -43,10 +43,10 @@ const Navbar = () => {
                 <div className="flex items-center gap-4">
                     <button className=" text-sm font-semibold text-[#1D271F]  ">সাইন ইন</button>
 
-                    <button className="bg-[#05893E] text-sm font-semibold px-4 py-2 rounded-2xl text-white shadow-md">সাইন আপ</button>
+                    <button className="bg-[#05893E] text-sm font-semibold px-4 py-2 rounded-lg text-white shadow-md">সাইন আপ</button>
                 </div>
             </div>
-           
+
         </div>
     )
 }

@@ -1,8 +1,14 @@
+import Banner from "@/components/Banner"
+import PriceUp from "@/components/PriceUp"
 
 
 const HomePage = () => {
   return (
-    <div>HomePage</div>
+    <div>
+      <Banner />
+      <PriceUp/>
+
+    </div>
   )
 }
 

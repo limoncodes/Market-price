@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Noto_Serif_Bengali  } from "next/font/google";
+import { Noto_Serif_Bengali } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Categories from "@/components/Categories";
 import SingleCategory from "@/components/SingleCategory";
 
 const geistSans = Noto_Serif_Bengali({
-  
-  subsets: ["latin","bengali"],
+
+  subsets: ["latin", "bengali"],
 });
 
 
@@ -23,12 +23,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.className} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
-        <Navbar/>
-        <Categories/>
-        <SingleCategory/>
-        
-        <main>{children}</main>
+      <body className="min-h-full flex flex-col bg-[#F0F5F0]">
+        <Navbar />
+        <Categories />
+        <SingleCategory />
+
+        <main className="container  mx-auto  ">{children}</main>
       </body>
     </html>
   );

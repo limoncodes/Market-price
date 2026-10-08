@@ -1,5 +1,4 @@
 
-
 interface CategoryType {
     id: string;
     slug: string;

@@ -21,7 +21,7 @@ const SingleCategory = async () => {
         }
     });
     const data = await getdata.json()
-    console.log(data)
+    
     return (
         <div className="bg-[#FAFCFA] shadow-md p-2 ">
             <Marquee speed={80}
