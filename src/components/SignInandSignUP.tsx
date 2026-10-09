@@ -41,7 +41,7 @@ const SignInandSignUP = () => {
                     >
                         {/* Avatar */}
                         <div className="relative flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-[#e9f3ed]">
-                            {user.image ? (
+                            {user?.image ? (
                                 <Image
                                     src={user.image}
                                     alt={user.name}

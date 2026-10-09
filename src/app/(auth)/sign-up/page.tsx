@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
-import { signUp } from "@/lib/auth-client";
+import { signIn, signUp } from "@/lib/auth-client";
 import { redirect } from "next/navigation";
 
 
@@ -38,18 +38,21 @@ const SignUp = () => {
         console.log(resdata, error)
         redirect("/")
 
-
-        
-
-
-
-
-
-
     };
+    const handleGoogle = async () => {
+        const data = await signIn.social({
+            provider: "google",
+        });
+    }
+    const handlegithub = async () => {
+        const data = await signIn.social({
+            provider: "github"
+        })
+    }
+
 
     return (
-        <div className="min-h-screen bg-[#f3f7f3] flex flex-col items-center pt-11">
+        <div className="min-h-screen bg-[#F0F5F0] flex flex-col items-center pt-11">
 
             {/* Header */}
             <div className="mb-7 text-center">
@@ -181,8 +184,9 @@ const SignUp = () => {
 
                     {/* Google */}
                     <button
+                        onClick={handleGoogle}
                         type="button"
-                        className="flex h-[43px] flex-1 items-center justify-center gap-2 rounded-[9px] border border-[#dce3dc] bg-white text-[13px] font-medium text-[#29302b] transition hover:bg-[#fafcfa]"
+                        className=" cursor-pointer flex h-[43px] flex-1 items-center justify-center gap-2 rounded-[9px] border border-[#dce3dc] bg-white text-[13px] font-medium text-[#29302b] transition hover:bg-[#fafcfa]"
                     >
                         <FcGoogle className="text-[18px]" />
 
@@ -193,8 +197,9 @@ const SignUp = () => {
 
                     {/* GitHub */}
                     <button
+                    onClick={handlegithub}
                         type="button"
-                        className="flex h-[43px] flex-1 items-center justify-center gap-2 rounded-[9px] border border-[#dce3dc] bg-white text-[13px] font-medium text-[#29302b] transition hover:bg-[#fafcfa]"
+                        className="cursor-pointer flex h-[43px] flex-1 items-center justify-center gap-2 rounded-[9px] border border-[#dce3dc] bg-white text-[13px] font-medium text-[#29302b] transition hover:bg-[#fafcfa]"
                     >
                         <FaGithub className="text-[17px] text-[#24292f]" />
 
