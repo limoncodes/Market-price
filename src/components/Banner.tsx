@@ -1,28 +1,39 @@
 
-"use client"
+"use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { startTransition, useEffect, useState } from "react";
 
 const Banner = () => {
     const [today, setToday] = useState("");
 
     useEffect(() => {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
-        setToday(
-            new Date().toLocaleDateString("bn-BD", {
-                dateStyle: "full",
-            })
-        );
+        startTransition(() => {
+            setToday(
+                new Date().toLocaleDateString("bn-BD", {
+                    dateStyle: "full",
+                })
+            );
+        });
+
+        const id = setInterval(() => {
+            startTransition(() => {
+                setToday(
+                    new Date().toLocaleDateString("bn-BD", {
+                        dateStyle: "full",
+                    })
+                );
+            });
+        }, 1000);
+
+        return () => clearInterval(id);
     }, []);
 
     return (
         <div className="flex flex-col sm:flex-row items-center justify-between gap-5 sm:gap-6 my-6 sm:my-7 lg:my-9 mx-3 sm:mx-0 px-5 sm:px-6 lg:px-8 py-6 sm:py-7 bg-[#FAFCFA] border border-gray-200 rounded-2xl overflow-hidden">
-
-            {/* div1 */}
             <div className="w-full min-w-0 max-w-2xl">
                 <h2 className="inline-block mb-3 px-3 py-1 bg-[#E4F3EA] text-[#05893E] text-xs sm:text-sm font-medium rounded-full">
-                    {today}
+                    {today || "..."}
                 </h2>
 
                 <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1D271F] leading-tight mb-4">
@@ -38,18 +49,16 @@ const Banner = () => {
                 </button>
             </div>
 
-            {/* div2 */}
             <div className="hidden sm:block w-full sm:w-auto shrink-0 sm:ml-2 lg:ml-6">
                 <Image
                     src="/bazar-hero 1.png"
                     width={315}
                     height={263}
-                    alt="bajar herro"
+                    alt="bajar hero"
                     className="object-contain w-full max-w-[220px] md:max-w-[270px] lg:max-w-[315px] h-auto"
                     loading="eager"
                 />
             </div>
-
         </div>
     );
 };

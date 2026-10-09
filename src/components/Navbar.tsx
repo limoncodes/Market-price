@@ -1,20 +1,21 @@
 
-"use client"
+"use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { startTransition, useEffect, useState } from "react";
 import SignInandSignUP from "./SignInandSignUP";
 
 const Navbar = () => {
     const [today, setToday] = useState("");
 
     useEffect(() => {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
-        setToday(
-            new Date().toLocaleDateString("bn-BD", {
-                dateStyle: "full",
-            })
-        );
+        startTransition(() => {
+            setToday(
+                new Date().toLocaleDateString("bn-BD", {
+                    dateStyle: "full",
+                })
+            );
+        });
     }, []);
 
     return (
@@ -34,7 +35,7 @@ const Navbar = () => {
                             </h2>
 
                             <p className="text-sm sm:text-[16px] text-[#1D271F]">
-                                {today}
+                                {today || "..."}
                             </p>
                         </div>
                     </div>
