@@ -1,4 +1,6 @@
-"use client"
+
+"use client";
+
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
@@ -10,56 +12,58 @@ const Login = () => {
         e.preventDefault();
 
         const formData = new FormData(e.currentTarget);
-
         const data = Object.fromEntries(formData.entries());
 
-        console.log(data)
-        const { data: resdata, error } = await signIn.email({
-
+        const { error } = await signIn.email({
             email: String(data.email),
             password: String(data.password),
-            callbackURL: "/"
+            callbackURL: "/",
         });
 
-        console.log(resdata, error)
         if (error) {
             toast.error("ইমেইল অথবা পাসওয়ার্ড সঠিক নয়");
             return;
         }
-    }
-    const handleGoogle = async () => {
-        const data = await signIn.social({
-            provider: "google",
-        });
-    }
-    const handlegithub = async () => {
-        const data = await signIn.social({
-            provider: "github"
-        })
-    }
+    };
 
+    const handleGoogle = async () => {
+        await signIn.social({
+            provider: "google",
+            callbackURL: "/",
+        });
+    };
+
+    const handlegithub = async () => {
+        await signIn.social({
+            provider: "github",
+            callbackURL: "/",
+        });
+    };
 
     return (
-        <div className="min-h-screen bg-[#F0F5F0] flex flex-col items-center pt-7">
+        <div className="min-h-screen bg-[#F0F5F0] flex flex-col items-center px-4 py-7 sm:px-6">
+
             {/* Header */}
-            <div className="mb-7 text-center">
-                <h1 className="text-[27px] font-bold leading-[1.35] text-[#202824]">
+            <div className="mb-7 w-full max-w-[464px] text-center">
+                <h1 className="text-2xl sm:text-[27px] font-bold leading-[1.35] text-[#202824]">
                     সাইন ইন
                 </h1>
 
-                <p className="mt-1 text-sm text-[#6d766f]">
+                <p className="mt-1 text-xs sm:text-sm leading-6 text-[#6d766f]">
                     বিস্তারিত নাম, বোর্ডের তুলনা ও প্রোফাইল দেখতে অ্যাকাউন্টে ঢুকুন।
                 </p>
             </div>
 
             {/* Card */}
-            <div className="w-[464px] rounded-[17px] border border-[#dfe5df] bg-white px-[27px] py-[27px]">
+            <div className="w-full max-w-[464px] rounded-[17px] border border-[#dfe5df] bg-white p-4 sm:px-[27px] sm:py-[27px]">
+
                 <form onSubmit={onSubmit}>
+
                     {/* Email */}
                     <div className="mb-4">
                         <label
                             htmlFor="email"
-                            className="mb-[7px] block text-[15px] font-medium text-[#252b27]"
+                            className="mb-[7px] block text-sm sm:text-[15px] font-medium text-[#252b27]"
                         >
                             ইমেইল
                         </label>
@@ -78,7 +82,7 @@ const Login = () => {
                     <div className="mb-[18px]">
                         <label
                             htmlFor="password"
-                            className="mb-[7px] block text-[15px] font-medium text-[#252b27]"
+                            className="mb-[7px] block text-sm sm:text-[15px] font-medium text-[#252b27]"
                         >
                             পাসওয়ার্ড
                         </label>
@@ -107,7 +111,7 @@ const Login = () => {
                 <div className="my-[18px] flex items-center gap-[15px]">
                     <div className="h-px flex-1 bg-[#e2e6e2]" />
 
-                    <span className="text-[13px] text-[#555d57]">
+                    <span className="shrink-0 text-[13px] text-[#555d57]">
                         অথবা
                     </span>
 
@@ -115,32 +119,31 @@ const Login = () => {
                 </div>
 
                 {/* Social Buttons */}
-                <div className="flex gap-2">
+                <div className="flex flex-col sm:flex-row gap-2">
+
                     {/* Google */}
                     <button
                         onClick={handleGoogle}
                         type="button"
-                        className=" cursor-pointer flex h-[43px] flex-1 items-center justify-center gap-2 rounded-[9px] border border-[#dce3dc] bg-white text-[13px] font-medium text-[#29302b] transition hover:bg-[#fafcfa]"
+                        className=" cursor-pointer flex min-h-[43px] min-w-0 flex-1 items-center justify-center gap-2 rounded-[9px] border border-[#dce3dc] bg-white px-2 py-2 text-xs sm:text-[13px] font-medium text-[#29302b] transition hover:bg-[#fafcfa]"
                     >
-                        <FcGoogle className="text-[18px]" />
-
+                        <FcGoogle className="shrink-0 text-[18px]" />
                         <span>Google দিয়ে চালিয়ে যান</span>
                     </button>
 
                     {/* GitHub */}
                     <button
-                    onClick={handlegithub}
+                        onClick={handlegithub}
                         type="button"
-                        className=" cursor-pointer flex h-[43px] flex-1 items-center justify-center gap-2 rounded-[9px] border border-[#dce3dc] bg-white text-[13px] font-medium text-[#29302b] transition hover:bg-[#fafcfa]"
+                        className="cursor-pointer flex min-h-[43px] min-w-0 flex-1 items-center justify-center gap-2 rounded-[9px] border border-[#dce3dc] bg-white px-2 py-2 text-xs sm:text-[13px] font-medium text-[#29302b] transition hover:bg-[#fafcfa]"
                     >
-                        <FaGithub className="text-[17px] text-[#24292f]" />
-
+                        <FaGithub className="shrink-0 text-[17px] text-[#24292f]" />
                         <span>GitHub দিয়ে চালিয়ে যান</span>
                     </button>
                 </div>
 
                 {/* Sign Up */}
-                <div className="mt-[17px] text-center text-[13px] text-[#505851]">
+                <div className="mt-[17px] text-center text-xs sm:text-[13px] text-[#505851]">
                     অ্যাকাউন্ট নেই?{" "}
                     <Link
                         href="/sign-up"
@@ -163,3 +166,4 @@ const Login = () => {
 };
 
 export default Login;
+

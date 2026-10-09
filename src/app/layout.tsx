@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import { Noto_Serif_Bengali } from "next/font/google";
 import "./globals.css";
@@ -7,11 +8,8 @@ import AllNavsection from "@/components/AllNavsection";
 import { ToastContainer } from "react-toastify";
 
 const geistSans = Noto_Serif_Bengali({
-
   subsets: ["latin", "bengali"],
 });
-
-
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -22,15 +20,20 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.className} h-full antialiased`}
+      className={`${geistSans.className} min-h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#F0F5F0]">
-       <AllNavsection/>
-       <ToastContainer/>
+      <body className="min-h-screen flex flex-col bg-[#F0F5F0]">
+        <AllNavsection />
 
-        <main className="container  mx-auto  ">{children}</main>
+        <ToastContainer />
+
+        <main className="container mx-auto w-full flex-1">
+          {children}
+        </main>
+
         <Footer />
       </body>
     </html>
   );
 }
+

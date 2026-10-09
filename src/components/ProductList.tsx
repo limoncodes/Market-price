@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -32,9 +33,9 @@ const ProductList = ({ data }: { data: CategoryType[] }) => {
     });
 
     return (
-        <>
+        <div className="w-full min-w-0">
             {/* Sort */}
-            <div className="bg-[#FAFCFA] rounded-2xl p-5 mt-6 flex items-center justify-end gap-2">
+            <div className="bg-[#FAFCFA] rounded-2xl p-4 sm:p-5 mt-6 flex flex-wrap items-center justify-end gap-2">
                 <span className="text-sm text-gray-600">
                     সাজান
                 </span>
@@ -42,7 +43,7 @@ const ProductList = ({ data }: { data: CategoryType[] }) => {
                 <select
                     value={sort}
                     onChange={(e) => setSort(e.target.value)}
-                    className="border border-[#DDE4DD] rounded-lg px-3 py-2 text-sm outline-none bg-white cursor-pointer"
+                    className="max-w-full border border-[#DDE4DD] rounded-lg px-3 py-2 text-sm outline-none bg-white cursor-pointer"
                 >
                     <option value="default">
                         ডিফল্ট
@@ -74,25 +75,26 @@ const ProductList = ({ data }: { data: CategoryType[] }) => {
                     </div>
 
                     {/* Product Grid */}
-                    <div className="grid grid-cols-3 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                         {sortedData.map((item) => (
-                            <Link href={`/productdetilse/${item.id}`} key={item.id}>
-                                <div
-                                    
-                                    className="rounded-xl border border-gray-200 bg-[#FAFCFA] p-3"
-                                >
+                            <Link
+                                href={`/productdetilse/${item.id}`}
+                                key={item.id}
+                                className="min-w-0"
+                            >
+                                <div className="h-full rounded-xl border border-gray-200 bg-[#FAFCFA] p-3">
 
                                     {/* Product Info */}
                                     <div className="flex items-center gap-3">
 
                                         {/* Icon */}
-                                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#F0F5F0] text-2xl">
+                                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#F0F5F0] text-2xl">
                                             {item.categoryIcon}
                                         </div>
 
                                         {/* Name */}
-                                        <div>
-                                            <h3 className="text-[16px] font-semibold text-[#1D271F]">
+                                        <div className="min-w-0">
+                                            <h3 className="text-[16px] font-semibold text-[#1D271F] break-words">
                                                 {item.nameBn}
                                             </h3>
 
@@ -104,29 +106,29 @@ const ProductList = ({ data }: { data: CategoryType[] }) => {
                                     </div>
 
                                     {/* Price */}
-                                    <div className="mt-4 flex items-end justify-between">
+                                    <div className="mt-4 flex flex-wrap items-end justify-between gap-2">
 
                                         <div>
                                             <p className="text-[12px] text-[#1D271F]">
                                                 আজকের দাম
                                             </p>
 
-                                            <p className="text-xl font-bold text-[#1D271F]">
+                                            <p className="text-lg sm:text-xl font-bold text-[#1D271F]">
                                                 {item.today} টাকা
                                             </p>
                                         </div>
 
                                         {/* Price Change */}
                                         {item.change.dir === "up" ? (
-                                            <span className="rounded-full bg-[#F1F7F2] px-2 py-1 text-[12px] text-red-500 font-semibold">
+                                            <span className="shrink-0 rounded-full bg-[#F1F7F2] px-2 py-1 text-[12px] text-red-500 font-semibold">
                                                 ▲ {item.change.pct}%
                                             </span>
                                         ) : item.change.dir === "down" ? (
-                                            <span className="rounded-full bg-[#F1F7F2] px-2 py-1 text-[12px] text-[#1A9951] font-semibold">
+                                            <span className="shrink-0 rounded-full bg-[#F1F7F2] px-2 py-1 text-[12px] text-[#1A9951] font-semibold">
                                                 ▼ {item.change.pct}%
                                             </span>
                                         ) : (
-                                            <span className="rounded-full bg-[#F1F7F2] px-2 py-1 text-[12px] text-[#1D271F] font-semibold">
+                                            <span className="shrink-0 rounded-full bg-[#F1F7F2] px-2 py-1 text-[12px] text-[#1D271F] font-semibold">
                                                 {item.change.pct}%
                                             </span>
                                         )}
@@ -140,8 +142,9 @@ const ProductList = ({ data }: { data: CategoryType[] }) => {
 
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 
 export default ProductList;
+

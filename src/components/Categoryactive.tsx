@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -20,9 +21,12 @@ const Categoryactive = ({
     const isActive = pathname === `/category/${category.id}`;
 
     return (
-        <Link href={`/category/${category.id}`}>
+        <Link
+            href={`/category/${category.id}`}
+            className="block shrink-0"
+        >
             <div
-                className={`flex items-center gap-1 px-3 py-2 rounded-md ${
+                className={`flex items-center gap-1 px-3 py-2 rounded-md whitespace-nowrap ${
                     isActive
                         ? "text-green-600 bg-green-100"
                         : "text-gray-700"
@@ -39,3 +43,4 @@ const Categoryactive = ({
 };
 
 export default Categoryactive;
+

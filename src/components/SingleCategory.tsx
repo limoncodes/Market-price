@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 import Marquee from "react-fast-marquee";
 
@@ -10,30 +11,31 @@ interface MarqueeType {
     change: {
         dir: string;
         pct: number;
-
-    }
-
+    };
 }
 
 const SingleCategory = async () => {
-    const getdata = await fetch("https://api.api-store.workers.dev/api/bazardor/products", {
-        next: {
-            revalidate: 60
+    const getdata = await fetch(
+        "https://api.api-store.workers.dev/api/bazardor/products",
+        {
+            next: {
+                revalidate: 60,
+            },
         }
-    });
-    const data = await getdata.json()
+    );
+
+    const data: MarqueeType[] = await getdata.json();
 
     return (
-        <div className="bg-[#FAFCFA] shadow-md p-2 ">
-            <Marquee speed={80}
-
-            >
-                {data.map((marquee: MarqueeType) => (
-                    <Link href={`/productdetilse/${marquee.id}`} key={marquee.id}>
-                        <div
-                            
-                            className="flex items-center gap-1.5 px-5 border-r border-[#E5E7EB] whitespace-nowrap"
-                        >
+        <div className="w-full min-w-0 overflow-hidden bg-[#FAFCFA] shadow-md p-2">
+            <Marquee speed={80}>
+                {data.map((marquee) => (
+                    <Link
+                        href={`/productdetilse/${marquee.id}`}
+                        key={marquee.id}
+                        className="shrink-0"
+                    >
+                        <div className="flex items-center gap-1.5 px-3 sm:px-5 py-1 border-r border-[#E5E7EB] whitespace-nowrap">
                             <h3 className="text-sm">
                                 {marquee.categoryIcon}
                             </h3>
@@ -59,10 +61,9 @@ const SingleCategory = async () => {
                     </Link>
                 ))}
             </Marquee>
-
-
         </div>
-    )
-}
+    );
+};
 
-export default SingleCategory
+export default SingleCategory;
+

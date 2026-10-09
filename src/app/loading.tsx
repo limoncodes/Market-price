@@ -1,19 +1,20 @@
+
 const Loading = () => {
   return (
-    <div className="fixed inset-0 z-50 flex min-h-screen items-center justify-center bg-[#F0F5F0]">
-      <div className="flex flex-col items-center">
+    <div className="fixed inset-0 z-50 flex min-h-screen items-center justify-center bg-[#F0F5F0] px-4 py-6">
+      <div className="flex w-full flex-col items-center text-center">
 
         {/* Logo */}
-        <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#05893E] shadow-lg animate-pulse">
-          <span className="text-3xl">🛒</span>
+        <div className="mb-5 flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-2xl bg-[#05893E] shadow-lg animate-pulse">
+          <span className="text-2xl sm:text-3xl">🛒</span>
         </div>
 
         {/* Brand */}
-        <h2 className="text-2xl font-bold text-[#1D271F]">
+        <h2 className="text-xl sm:text-2xl font-bold text-[#1D271F]">
           বাজার দর
         </h2>
 
-        <p className="mt-1 text-sm text-gray-500">
+        <p className="mt-2 max-w-full text-xs sm:text-sm text-gray-500">
           বাজারের সর্বশেষ দাম লোড হচ্ছে...
         </p>
 
@@ -30,3 +31,4 @@ const Loading = () => {
 };
 
 export default Loading;
+

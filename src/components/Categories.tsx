@@ -1,3 +1,4 @@
+
 import { Suspense } from "react";
 import Categoryactive from "./Categoryactive";
 
@@ -21,18 +22,21 @@ const Categories = async () => {
     const data = await getdata.json();
 
     return (
-        <div className="border-t-2 border-b-2 border-[#E1E8E1] bg-[#FAFCFA]  sticky top-0  ">
-            <div className="container mx-auto p-4 flex items-center gap-8">
-                {data.map((category: CategoryType) => (
-                    <div key={category.id}>
-                        <Suspense fallback={<div>Loading...</div>}>
-                            <Categoryactive category={category} />
-                        </Suspense>
-                    </div>
-                ))}
+        <div className="border-t-2 border-b-2 border-[#E1E8E1] bg-[#FAFCFA] sticky top-0">
+            <div className="container mx-auto px-4 py-3 sm:p-4">
+                <div className="flex items-center gap-5 sm:gap-8 overflow-x-auto whitespace-nowrap scrollbar-hide">
+                    {data.map((category: CategoryType) => (
+                        <div key={category.id} className="shrink-0">
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <Categoryactive category={category} />
+                            </Suspense>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     );
 };
 
 export default Categories;
+
