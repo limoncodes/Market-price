@@ -6,14 +6,18 @@ import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { signIn, signUp } from "@/lib/auth-client";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 
 const SignUp = () => {
     const [passwordError, setPasswordError] = useState("");
-    const router = useRouter();
+    const [isLoading, setIsLoading] = useState(false);
 
-    const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const onSubmit = async (
+        e: React.FormEvent<HTMLFormElement>
+    ) => {
         e.preventDefault();
+
+        if (isLoading) return;
 
         const formData = new FormData(e.currentTarget);
         const data = Object.fromEntries(formData.entries());
@@ -26,20 +30,32 @@ const SignUp = () => {
         }
 
         setPasswordError("");
+        setIsLoading(true);
 
-        const { error } = await signUp.email({
-            name: String(data.name),
-            email: String(data.email),
-            password: String(data.password),
-            callbackURL: "/",
-        });
+        try {
+            const { error } = await signUp.email({
+                name: String(data.name),
+                email: String(data.email),
+                password: String(data.password),
+                callbackURL: "/",
+            });
 
-        if (error) {
-            setPasswordError(error.message || "অ্যাকাউন্ট তৈরি করা যায়নি");
+            if (error) {
+                setPasswordError(
+                    error.message || "অ্যাকাউন্ট তৈরি করা যায়নি"
+                );
+                setIsLoading(false);
+                return;
+            }
+        } catch {
+            setPasswordError(
+                "কিছু সমস্যা হয়েছে। আবার চেষ্টা করুন।"
+            );
+            setIsLoading(false);
             return;
         }
 
-        router.push("/");
+        redirect("/");
     };
 
     const handleGoogle = async () => {
@@ -168,9 +184,12 @@ const SignUp = () => {
                     {/* Submit */}
                     <button
                         type="submit"
-                        className="mt-[1px] h-11 w-full cursor-pointer rounded-[9px] bg-[#07933e] text-sm font-semibold text-white shadow-[0_3px_4px_rgba(0,115,47,0.25)] transition hover:bg-[#078539]"
+                        disabled={isLoading}
+                        className="mt-[1px] h-11 w-full cursor-pointer rounded-[9px] bg-[#07933e] text-sm font-semibold text-white shadow-[0_3px_4px_rgba(0,115,47,0.25)] transition hover:bg-[#078539] disabled:cursor-not-allowed disabled:opacity-70"
                     >
-                        অ্যাকাউন্ট তৈরি করুন
+                        {isLoading
+                            ? "অ্যাকাউন্ট তৈরি হচ্ছে..."
+                            : "অ্যাকাউন্ট তৈরি করুন"}
                     </button>
                 </form>
 
@@ -233,4 +252,3 @@ const SignUp = () => {
 };
 
 export default SignUp;
-

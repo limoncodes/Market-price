@@ -11,7 +11,7 @@ export const auth = betterAuth({
 
     trustedOrigins: [
         "http://localhost:3000",
-        "https://market-price-indol.vercel.app",
+        
     ],
 
     emailAndPassword: {
